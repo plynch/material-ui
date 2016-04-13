@@ -171,7 +171,6 @@ class IconMenu extends React.Component {
   };
 
   state = {
-    iconButtonRef: this.props.iconButtonElement.props.ref || 'iconButton',
     menuInitiallyKeyboardFocused: false,
     open: false,
   };
@@ -203,9 +202,9 @@ class IconMenu extends React.Component {
     }
 
     this.setState({open: false}, () => {
-      //Set focus on the icon button when the menu close
+      // Set focus on the icon button when the menu close
       if (isKeyboard) {
-        const iconButton = this.refs[this.state.iconButtonRef];
+        const iconButton = this.refs.iconButton;
         ReactDOM.findDOMNode(iconButton).focus();
         iconButton.setKeyboardFocus();
       }
@@ -293,7 +292,7 @@ class IconMenu extends React.Component {
         this.open(Events.isKeyboard(event) ? 'keyboard' : 'iconTap', event);
         if (iconButtonElement.props.onTouchTap) iconButtonElement.props.onTouchTap(event);
       },
-      ref: this.state.iconButtonRef,
+      ref: 'iconButton',
     });
 
     const menu = (
